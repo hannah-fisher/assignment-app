@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 
+from AssignmentAppData import AssignmentAppData
 from ControlPanelWidget import ControlPanelWidget
 from DisplayAreaWidget import DisplayAreaWidget
 from UpcomingWidget import UpcomingWidget
@@ -7,10 +8,11 @@ from UpcomingWidget import UpcomingWidget
 class AppWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
+        self.appData = [AssignmentAppData()]
         self.resize(800, 600)
         self.setWindowTitle("Assignment App")
         layout = QtWidgets.QHBoxLayout()
-        controlPanelWidget = ControlPanelWidget()
+        controlPanelWidget = ControlPanelWidget(self.appData)
         displayAreaWidget = DisplayAreaWidget()
         upcomingWidget = UpcomingWidget()
         layout.addWidget(controlPanelWidget)
