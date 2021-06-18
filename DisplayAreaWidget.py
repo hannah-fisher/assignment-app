@@ -11,7 +11,7 @@ class DisplayAreaWidget(QtWidgets.QWidget):
         self.appData = appData
         self.layout = QtWidgets.QGridLayout()
         self.setLayout(self.layout)
-        Style.backgroundColorWidget(self, "red")
+        Style.backgroundColorWidget(self, Style.DisplayAreaWidgetColor)
 
     def reload_display(self):
         appData = self.appData[0]

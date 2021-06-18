@@ -16,7 +16,7 @@ class ControlPanelEditWidget(QtWidgets.QWidget):
         layout.addWidget(label)
         layout.addWidget(loadFromFileButton)
         self.setLayout(layout)
-        Style.backgroundColorWidget(self, "yellow")
+        Style.backgroundColorWidget(self, Style.ControlPanelEditWidgetColor)
 
     def load_from_file_button_clicked(self):
         filename, other = QtWidgets.QFileDialog.getOpenFileName(self, "Load App Data", "/home/", "*.json")

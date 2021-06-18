@@ -7,4 +7,4 @@ class ControlPanelViewWidget(QtWidgets.QWidget):
         super().__init__()
         label = QtWidgets.QLabel(self)
         label.setText("control panel view widget")
-        Style.backgroundColorWidget(self, "orange")
+        Style.backgroundColorWidget(self, Style.ControlPanelViewWidgetColor)

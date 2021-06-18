@@ -1,5 +1,7 @@
 from PySide6 import QtWidgets
 
+from Style import Style
+
 from AssignmentAppData import AssignmentAppData
 from ControlPanelWidget import ControlPanelWidget
 from DisplayAreaWidget import DisplayAreaWidget
@@ -24,6 +26,7 @@ class AppWindow(QtWidgets.QMainWindow):
         centralWidget = QtWidgets.QWidget()
         centralWidget.setLayout(layout)
         self.setCentralWidget(centralWidget)
+        Style.backgroundColorWidget(self, Style.AppWindowColor)
 
     def appDataChanged(self):
         # call this whenever appdata changes

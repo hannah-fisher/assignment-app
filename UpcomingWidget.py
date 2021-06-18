@@ -7,4 +7,4 @@ class UpcomingWidget(QtWidgets.QWidget):
         super().__init__()
         label = QtWidgets.QLabel(self)
         label.setText("upcoming widget")
-        Style.backgroundColorWidget(self, "blue")
+        Style.backgroundColorWidget(self, Style.UpcomingWidgetColor)
