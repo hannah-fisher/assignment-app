@@ -5,14 +5,14 @@ from ControlPanelViewWidget import ControlPanelViewWidget
 from Style import Style
 
 class ControlPanelWidget(QtWidgets.QWidget):
-    def __init__(self, appData):
+    def __init__(self, appData, appDataChanged):
         super().__init__()
         Style.backgroundColorWidget(self, "green")
         title = QtWidgets.QLabel(self)
         title.setText("Control Panel")
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(title)
-        layout.addWidget(ControlPanelEditWidget(appData))
+        layout.addWidget(ControlPanelEditWidget(appData, appDataChanged))
         layout.addWidget(ControlPanelViewWidget())
         layout.setStretch(0, 1)
         layout.setStretch(1, 5)
