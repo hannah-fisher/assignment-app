@@ -1,3 +1,4 @@
+import datetime
 import enum
 
 class AssignmentAppData:
@@ -14,6 +15,15 @@ class AssignmentAppData:
         for category in self.categories:
             if category.name == category_name:
                 category.add_assignment(assignment)
+
+    def complete_assignment(self, assignment):
+        for c in self.categories:
+            for a in c.assignments:
+                if a.id == assignment.id:
+                    finished_assignment = FinishedAssignment(assignment, datetime.datetime.now(), c.name)
+                    self.finished.append(finished_assignment)
+                    c.assignments.remove(assignment)
+                    break
 
     def __str__(self):
         string = ""

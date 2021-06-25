@@ -24,6 +24,6 @@ class DisplayAreaWidget(QtWidgets.QWidget):
             row = added_category_count - (column * column_count)
             categoryWidget = CategoryWidget(category.name, category.color)
             for assignment in category.assignments:
-                categoryWidget.add_assignment(assignment)
+                categoryWidget.add_assignment(assignment, appData.complete_assignment, self.reload_display)
             self.layout.addWidget(categoryWidget, row, column)
             added_category_count += 1

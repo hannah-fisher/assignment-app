@@ -28,6 +28,6 @@ class CategoryWidget(QtWidgets.QWidget):
 
         Style.backgroundColorWidget(self, color)
 
-    def add_assignment(self, assignment):
-        assignmentWidget = AssignmentWidget(assignment)
+    def add_assignment(self, assignment, complete_assignment_func, reload_display_func):
+        assignmentWidget = AssignmentWidget(assignment, complete_assignment_func, reload_display_func)
         self.vbox.addWidget(assignmentWidget)

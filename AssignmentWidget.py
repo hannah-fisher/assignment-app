@@ -2,10 +2,14 @@ from PySide6 import QtWidgets
 
 from Style import Style
 
+from AssignmentDialog import AssignmentDialog
+
 class AssignmentWidget(QtWidgets.QWidget):
-    def __init__(self, assignment):
+    def __init__(self, assignment, complete_assignment_func, reload_display_func):
         super().__init__()
         self.assignment = assignment
+        self.complete_assignment_func = complete_assignment_func
+        self.reload_display_func = reload_display_func
         self.label = QtWidgets.QLabel(self)
         self.set_label_text()
         self.setStyleSheet("""
@@ -29,3 +33,7 @@ class AssignmentWidget(QtWidgets.QWidget):
         if assignment.notes != "":
             text += " ..."
         self.label.setText(text)
+
+    def mousePressEvent(self, event):
+        dialog = AssignmentDialog(self.assignment, self.complete_assignment_func, self.reload_display_func)
+        dialog.exec()
