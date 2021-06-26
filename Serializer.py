@@ -8,13 +8,44 @@ class Serializer():
         pass
 
     @classmethod
-    def serialize(cls):
+    def serialize(cls, filename, appData):
         """
         Given an AssignmentAppData object,
         Write the contents to a json file
         """
-        pass
-        # TODO
+        categoriesData = {}
+        finishedData = []
+        for category in appData.categories:
+            categoryData = {}
+            categoryData["Color"] = category.color
+            assignmentsData = []
+            for assignment in category.assignments:
+                assignmentData = {}
+                assignmentData["id"] = f"{assignment.id:03}"
+                assignmentData["title"] = assignment.title
+                dueDateData = {}
+                dueDateData["year"] = assignment.due_date.year
+                dueDateData["month"] = assignment.due_date.month
+                dueDateData["day"] = assignment.due_date.day
+                dueDateData["hour"] = assignment.due_date.hour
+                assignmentData["due_date"] = dueDateData
+                assignmentData["notes"] = assignment.notes
+                assignmentData["priority"] = f"{assignment.priority:01}"
+                assignmentsData.append(assignmentData)
+            categoryData["Assignments"] = assignmentsData
+            categoriesData[category.name] = categoryData
+        for finishedAssignment in appData.finished:
+            # TODO
+            pass
+        appDataDict = {"Categories": categoriesData, "Finished": finishedData}
+        # write to file
+        try:
+            json_file = open(filename, "w")
+            json.dump(appDataDict, json_file, indent=1)
+            json_file.close()            
+        except FileNotFoundError:
+            # TODO something more here
+            print("file not found: " + filename)
 
     @classmethod
     def deserialize(cls, json_file_path):

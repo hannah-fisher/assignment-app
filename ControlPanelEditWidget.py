@@ -13,8 +13,11 @@ class ControlPanelEditWidget(QtWidgets.QWidget):
         label.setText("control panel edit widget")
         loadFromFileButton = QtWidgets.QPushButton("load from file", self)
         loadFromFileButton.clicked.connect(self.load_from_file_button_clicked)
+        saveToFileButton = QtWidgets.QPushButton("save to file", self)
+        saveToFileButton.clicked.connect(self.save_to_file_button_clicked)
         layout.addWidget(label)
         layout.addWidget(loadFromFileButton)
+        layout.addWidget(saveToFileButton)
         self.setLayout(layout)
         Style.backgroundColorWidget(self, Style.ControlPanelEditWidgetColor)
 
@@ -22,3 +25,7 @@ class ControlPanelEditWidget(QtWidgets.QWidget):
         filename, other = QtWidgets.QFileDialog.getOpenFileName(self, "Load App Data", "/home/", "*.json")
         self.appData[0] = Serializer.deserialize(filename)
         self.appDataChanged()
+
+    def save_to_file_button_clicked(self):
+        filename, other = QtWidgets.QFileDialog.getSaveFileName(self, "Save App Data", "/home/", "*.json")
+        Serializer.serialize(filename, self.appData[0])
