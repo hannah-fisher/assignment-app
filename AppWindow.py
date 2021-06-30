@@ -15,8 +15,8 @@ class AppWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("Assignment App")
         layout = QtWidgets.QHBoxLayout()
         self.controlPanelWidget = ControlPanelWidget(self.appData, self.appDataChanged)
-        self.displayAreaWidget = DisplayAreaWidget(self.appData)
-        self.upcomingWidget = UpcomingWidget()
+        self.displayAreaWidget = DisplayAreaWidget(self.appData, self.appDataChanged)
+        self.upcomingWidget = UpcomingWidget(self.appData)
         layout.addWidget(self.controlPanelWidget)
         layout.addWidget(self.displayAreaWidget)
         layout.addWidget(self.upcomingWidget)
@@ -32,3 +32,4 @@ class AppWindow(QtWidgets.QMainWindow):
         # call this whenever appdata changes
         # update gui
         self.displayAreaWidget.reload_display()
+        self.upcomingWidget.reload_display()

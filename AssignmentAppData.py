@@ -25,6 +25,14 @@ class AssignmentAppData:
                     c.assignments.remove(assignment)
                     break
 
+    def get_soonest_n_assignments(self, n):
+        all_assignments_with_categories = []
+        for category in self.categories:
+            for assignment in category.assignments:
+                all_assignments_with_categories.append((assignment, category.color))
+        all_assignments_with_categories = sorted(all_assignments_with_categories, key=lambda x: x[0].due_date)
+        return all_assignments_with_categories[:n]
+
     def __str__(self):
         string = ""
         string += "Categories:\n\n"

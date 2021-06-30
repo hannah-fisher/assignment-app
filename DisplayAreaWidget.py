@@ -6,9 +6,10 @@ from Style import Style
 from CategoryWidget import CategoryWidget
 
 class DisplayAreaWidget(QtWidgets.QWidget):
-    def __init__(self, appData):
+    def __init__(self, appData, appDataChanged):
         super().__init__()
         self.appData = appData
+        self.appDataChanged = appDataChanged
         self.layout = QtWidgets.QGridLayout()
         self.setLayout(self.layout)
         Style.backgroundColorWidget(self, Style.DisplayAreaWidgetColor)
@@ -24,6 +25,6 @@ class DisplayAreaWidget(QtWidgets.QWidget):
             row = added_category_count - (column * column_count)
             categoryWidget = CategoryWidget(category.name, category.color)
             for assignment in category.assignments:
-                categoryWidget.add_assignment(assignment, appData.complete_assignment, self.reload_display)
+                categoryWidget.add_assignment(assignment, appData.complete_assignment, self.appDataChanged)
             self.layout.addWidget(categoryWidget, row, column)
             added_category_count += 1
