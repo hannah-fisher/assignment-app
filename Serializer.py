@@ -68,7 +68,7 @@ class Serializer():
                 for assignment in assignments_json:
                     d = assignment["due_date"]
                     due_date = datetime.datetime(d["year"], d["month"], d["day"], hour=d["hour"])
-                    appData.add_assignment(category_name, int(assignment["id"]), assignment["title"], due_date, assignment["notes"], int(assignment["priority"]))
+                    appData.add_assignment(category_name, assignment["id"], assignment["title"], due_date, assignment["notes"], int(assignment["priority"]))
             # TODO load finished assignments
             json_file.close()
             return appData
