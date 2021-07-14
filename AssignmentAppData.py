@@ -16,6 +16,10 @@ class AssignmentAppData:
             if category.name == category_name:
                 category.add_assignment(assignment)
 
+    def clear_all_data(self):
+        self.categories = []
+        self.finished = []
+
     def complete_assignment(self, assignment):
         for c in self.categories:
             for a in c.assignments:

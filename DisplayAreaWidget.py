@@ -15,8 +15,15 @@ class DisplayAreaWidget(QtWidgets.QWidget):
         Style.backgroundColorWidget(self, Style.DisplayAreaWidgetColor)
 
     def reload_display(self):
+        # clear all category widgets
+        while self.layout.count():
+            child = self.layout.takeAt(0)
+            child.widget().deleteLater()
+        # re-add new category widgets
         appData = self.appData[0]
         category_count = len(appData.categories)
+        if category_count == 0:
+            return
         column_count = ceil(sqrt(category_count))
         row_count = ceil(category_count / column_count)
         added_category_count = 0
