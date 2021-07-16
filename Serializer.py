@@ -75,3 +75,4 @@ class Serializer():
         except FileNotFoundError:
             # TODO something more here
             print("file not found: " + json_file_path)
+            return AssignmentAppData()

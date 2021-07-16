@@ -49,8 +49,9 @@ class AppWindow(QtWidgets.QMainWindow):
     def appDataChanged(self):
         # call this whenever appdata changes
         # update gui
-        self.displayAreaWidget.reload_display()
-        self.upcomingWidget.reload_display()
+        if self.appData[0] is not None:
+            self.displayAreaWidget.reload_display()
+            self.upcomingWidget.reload_display()
 
     def save_action(self):
         filename, other = QtWidgets.QFileDialog.getSaveFileName(self, "Save App Data", "/home/", "*.json")
