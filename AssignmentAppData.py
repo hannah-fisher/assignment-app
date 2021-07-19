@@ -59,6 +59,7 @@ class Category:
 
     def add_assignment(self, assignment):
         self.assignments.append(assignment)
+        self.assignments = sorted(self.assignments, key=lambda a: a.due_date)
 
 
 class Assignment:
