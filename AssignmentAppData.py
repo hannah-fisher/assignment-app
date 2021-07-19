@@ -29,6 +29,9 @@ class AssignmentAppData:
                     c.assignments.remove(assignment)
                     break
 
+    def get_category_names(self):
+        return [category.name for category in self.categories]
+
     def get_soonest_n_assignments(self, n):
         all_assignments_with_categories = []
         for category in self.categories:

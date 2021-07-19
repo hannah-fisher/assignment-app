@@ -2,6 +2,7 @@ import datetime
 import uuid
 
 from PySide6 import QtWidgets
+from AssignmentAppData import Priority
 
 class AddAssignmentDialog(QtWidgets.QDialog):
     def __init__(self, appData, appDataChanged):
@@ -12,17 +13,19 @@ class AddAssignmentDialog(QtWidgets.QDialog):
         self.setWindowTitle("Add Assignment")
         layout = QtWidgets.QVBoxLayout()
 
-        self.categoryInput = QtWidgets.QLineEdit()
+        self.categoryInput = QtWidgets.QComboBox()
         self.titleInput = QtWidgets.QLineEdit()
         self.dueDateInput = QtWidgets.QLineEdit()
         self.notesInput = QtWidgets.QLineEdit()
-        self.priorityInput = QtWidgets.QLineEdit()
+        self.priorityInput = QtWidgets.QComboBox()
 
-        self.categoryInput.setPlaceholderText("Category Name")
+        for categoryName in appData[0].get_category_names():
+            self.categoryInput.addItem(categoryName)
         self.titleInput.setPlaceholderText("Title")
         self.dueDateInput.setPlaceholderText("Due Date (dd mm yyyy hh)")
         self.notesInput.setPlaceholderText("Notes")
-        self.priorityInput.setPlaceholderText("Priority (1/2/3/4)")
+        for n in ["none", "low", "medium", "high"]:
+            self.priorityInput.addItem(n)
 
         createButton = QtWidgets.QPushButton("add assignment", self)
         createButton.clicked.connect(self.add_assignment_button_clicked)
@@ -37,11 +40,11 @@ class AddAssignmentDialog(QtWidgets.QDialog):
         self.setLayout(layout)
 
     def add_assignment_button_clicked(self):
-        category = self.categoryInput.text()
+        category = self.categoryInput.currentText()
         title = self.titleInput.text()
         dueDate = self.dueDateInput.text()
         notes = self.notesInput.text()
-        priority = self.priorityInput.text()
+        priority = self.priorityInput.currentText()
         # check that due date input is valid
         try:
             dueDateParts = dueDate.split(" ")
@@ -50,16 +53,7 @@ class AddAssignmentDialog(QtWidgets.QDialog):
             # TODO show the error
             print("error when making due date")
             return
-        # check that priority input is valid
-        try:
-            priority = int(priority)
-            assert priority >= 0
-            assert priority < 4
-        except (ValueError, AssertionError) as e:
-            # TODO show the error
-            print("error when making priority")
-            return
         # create the assignment
-        self.appData[0].add_assignment(category, str(uuid.uuid1()), title, dueDate, notes, priority)
+        self.appData[0].add_assignment(category, str(uuid.uuid1()), title, dueDate, notes, Priority[priority].value)
         self.appDataChanged()
         self.close()
