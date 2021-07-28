@@ -8,7 +8,7 @@ class UpcomingWidget(QtWidgets.QWidget):
         super().__init__()
         self.appData = appData
         label = QtWidgets.QLabel(self)
-        label.setText("upcoming widget")
+        label.setText("Upcoming Assignments")
         self.layout = QtWidgets.QVBoxLayout()
         self.layout.addWidget(label)
 
