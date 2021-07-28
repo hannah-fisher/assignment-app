@@ -21,7 +21,7 @@ class Serializer():
             assignmentsData = []
             for assignment in category.assignments:
                 assignmentData = {}
-                assignmentData["id"] = f"{assignment.id:03}"
+                assignmentData["id"] = f"{assignment.id}"
                 assignmentData["title"] = assignment.title
                 dueDateData = {}
                 dueDateData["year"] = assignment.due_date.year
