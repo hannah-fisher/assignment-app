@@ -2,6 +2,7 @@ from PySide6 import QtGui, QtWidgets
 
 from Serializer import Serializer
 from Style import Style
+import webbrowser
 
 from AssignmentAppData import AssignmentAppData
 from ControlPanelWidget import ControlPanelWidget
@@ -37,6 +38,13 @@ class AppWindow(QtWidgets.QMainWindow):
         grayThemeAction.triggered.connect(self.gray_theme_action)
         preferencesMenu.addAction(funThemeAction)
         preferencesMenu.addAction(grayThemeAction)
+
+        sourceCodeAction = QtGui.QAction("See source code", self)
+        sourceCodeAction.triggered.connect(self.source_code_action)
+        feedbackAction = QtGui.QAction("Submit feedback", self)
+        feedbackAction.triggered.connect(self.feedback_action)
+        helpMenu.addAction(sourceCodeAction)
+        helpMenu.addAction(feedbackAction)
 
         layout = QtWidgets.QHBoxLayout()
         self.controlPanelWidget = ControlPanelWidget(self.appData, self.appDataChanged)
@@ -85,3 +93,9 @@ class AppWindow(QtWidgets.QMainWindow):
     def gray_theme_action(self):
         Style.grayTheme()
         self.theme_changed()
+
+    def source_code_action(self):
+        webbrowser.open("https://github.com/hannah-fisher/assignment-app")
+
+    def feedback_action(self):
+        webbrowser.open("https://forms.gle/7qzwA6J6YNrN8SFq7")
