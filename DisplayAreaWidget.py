@@ -35,3 +35,6 @@ class DisplayAreaWidget(QtWidgets.QWidget):
                 categoryWidget.add_assignment(assignment, appData.complete_assignment, self.appDataChanged)
             self.layout.addWidget(categoryWidget, row, column)
             added_category_count += 1
+
+    def recolor(self):
+        Style.backgroundColorWidget(self, Style.DisplayAreaWidgetColor)

@@ -8,3 +8,6 @@ class ControlPanelViewWidget(QtWidgets.QWidget):
         label = QtWidgets.QLabel(self)
         label.setText("control panel view widget")
         Style.backgroundColorWidget(self, Style.ControlPanelViewWidgetColor)
+
+    def recolor(self):
+        Style.backgroundColorWidget(self, Style.ControlPanelViewWidgetColor)

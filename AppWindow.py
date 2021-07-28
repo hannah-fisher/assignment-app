@@ -31,6 +31,13 @@ class AppWindow(QtWidgets.QMainWindow):
         fileMenu.addAction(loadAction)
         fileMenu.addAction(clearAction)
 
+        funThemeAction = QtGui.QAction("Fun Theme", self)
+        funThemeAction.triggered.connect(self.fun_theme_action)
+        grayThemeAction = QtGui.QAction("Gray Theme", self)
+        grayThemeAction.triggered.connect(self.gray_theme_action)
+        preferencesMenu.addAction(funThemeAction)
+        preferencesMenu.addAction(grayThemeAction)
+
         layout = QtWidgets.QHBoxLayout()
         self.controlPanelWidget = ControlPanelWidget(self.appData, self.appDataChanged)
         self.displayAreaWidget = DisplayAreaWidget(self.appData, self.appDataChanged)
@@ -53,6 +60,11 @@ class AppWindow(QtWidgets.QMainWindow):
             self.displayAreaWidget.reload_display()
             self.upcomingWidget.reload_display()
 
+    def theme_changed(self):
+        self.controlPanelWidget.recolor()
+        self.displayAreaWidget.recolor()
+        self.upcomingWidget.recolor()
+
     def save_action(self):
         filename, other = QtWidgets.QFileDialog.getSaveFileName(self, "Save App Data", "/home/", "*.json")
         Serializer.serialize(filename, self.appData[0])
@@ -65,3 +77,11 @@ class AppWindow(QtWidgets.QMainWindow):
     def clear_action(self):
         self.appData[0].clear_all_data()
         self.appDataChanged()
+
+    def fun_theme_action(self):
+        Style.funTheme()
+        self.theme_changed()
+
+    def gray_theme_action(self):
+        Style.grayTheme()
+        self.theme_changed()

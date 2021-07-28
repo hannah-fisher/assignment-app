@@ -46,3 +46,6 @@ class ControlPanelEditWidget(QtWidgets.QWidget):
     def add_category_button_clicked(self):
         dialog = AddCategoryDialog(self.appData, self.appDataChanged)
         dialog.exec()
+
+    def recolor(self):
+        Style.backgroundColorWidget(self, Style.ControlPanelEditWidgetColor)

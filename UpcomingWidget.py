@@ -42,3 +42,6 @@ class UpcomingWidget(QtWidgets.QWidget):
             assignment_label.setText(label_string)
             Style.backgroundColorWidget(assignment_label, c)
             self.vbox.addWidget(assignment_label)
+
+    def recolor(self):
+        Style.backgroundColorWidget(self, Style.UpcomingWidgetColor)
