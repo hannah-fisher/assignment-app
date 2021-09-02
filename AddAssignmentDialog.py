@@ -4,6 +4,7 @@ import uuid
 from PySide6 import QtWidgets
 from AssignmentAppData import Priority
 
+
 class AddAssignmentDialog(QtWidgets.QDialog):
     def __init__(self, appData, appDataChanged):
         super().__init__()
@@ -48,12 +49,17 @@ class AddAssignmentDialog(QtWidgets.QDialog):
         # check that due date input is valid
         try:
             dueDateParts = dueDate.split(" ")
-            dueDate = datetime.datetime(int(dueDateParts[2]), int(dueDateParts[1]), int(dueDateParts[0]), hour=int(dueDateParts[3]))
+            dueDate = datetime.datetime(int(dueDateParts[2]),
+                                        int(dueDateParts[1]),
+                                        int(dueDateParts[0]),
+                                        hour=int(dueDateParts[3]))
         except ValueError as e:
             # TODO show the error
             print("error when making due date")
             return
         # create the assignment
-        self.appData[0].add_assignment(category, str(uuid.uuid1()), title, dueDate, notes, Priority[priority].value)
+        self.appData[0].add_assignment(category, str(uuid.uuid1()), title,
+                                       dueDate, notes,
+                                       Priority[priority].value)
         self.appDataChanged()
         self.close()

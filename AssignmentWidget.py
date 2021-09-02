@@ -4,8 +4,10 @@ from Style import Style
 
 from AssignmentDialog import AssignmentDialog
 
+
 class AssignmentWidget(QtWidgets.QListWidget):
-    def __init__(self, assignment, complete_assignment_func, reload_display_func):
+    def __init__(self, assignment, complete_assignment_func,
+                 reload_display_func):
         super().__init__()
         self.assignment = assignment
         self.complete_assignment_func = complete_assignment_func
@@ -17,7 +19,7 @@ class AssignmentWidget(QtWidgets.QListWidget):
                 background-color: red;
             }
         """)
-        self.setFixedHeight(40) # should do this as fraction of window height
+        self.setFixedHeight(40)  # should do this as fraction of window height
 
     def set_label_text(self):
         assignment = self.assignment
@@ -27,7 +29,8 @@ class AssignmentWidget(QtWidgets.QListWidget):
             text += " "
         text += assignment.title
         text += " due "
-        text += str(assignment.due_date.month) + "/" + str(assignment.due_date.day)
+        text += str(assignment.due_date.month) + "/" + str(
+            assignment.due_date.day)
         text += " at " + str(assignment.due_date.hour % 12)
         text += " am" if assignment.due_date.hour < 12 else " pm"
         if assignment.notes != "":
@@ -35,5 +38,7 @@ class AssignmentWidget(QtWidgets.QListWidget):
         self.label.setText(text)
 
     def mousePressEvent(self, event):
-        dialog = AssignmentDialog(self.assignment, self.complete_assignment_func, self.reload_display_func)
+        dialog = AssignmentDialog(self.assignment,
+                                  self.complete_assignment_func,
+                                  self.reload_display_func)
         dialog.exec()

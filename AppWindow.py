@@ -9,6 +9,7 @@ from ControlPanelWidget import ControlPanelWidget
 from DisplayAreaWidget import DisplayAreaWidget
 from UpcomingWidget import UpcomingWidget
 
+
 class AppWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -47,8 +48,10 @@ class AppWindow(QtWidgets.QMainWindow):
         helpMenu.addAction(feedbackAction)
 
         layout = QtWidgets.QHBoxLayout()
-        self.controlPanelWidget = ControlPanelWidget(self.appData, self.appDataChanged)
-        self.displayAreaWidget = DisplayAreaWidget(self.appData, self.appDataChanged)
+        self.controlPanelWidget = ControlPanelWidget(self.appData,
+                                                     self.appDataChanged)
+        self.displayAreaWidget = DisplayAreaWidget(self.appData,
+                                                   self.appDataChanged)
         self.upcomingWidget = UpcomingWidget(self.appData)
         layout.addWidget(self.controlPanelWidget)
         layout.addWidget(self.displayAreaWidget)
@@ -74,11 +77,13 @@ class AppWindow(QtWidgets.QMainWindow):
         self.upcomingWidget.recolor()
 
     def save_action(self):
-        filename, other = QtWidgets.QFileDialog.getSaveFileName(self, "Save App Data", "/home/", "*.json")
+        filename, other = QtWidgets.QFileDialog.getSaveFileName(
+            self, "Save App Data", "/home/", "*.json")
         Serializer.serialize(filename, self.appData[0])
 
     def load_action(self):
-        filename, other = QtWidgets.QFileDialog.getOpenFileName(self, "Load App Data", "/home/", "*.json")
+        filename, other = QtWidgets.QFileDialog.getOpenFileName(
+            self, "Load App Data", "/home/", "*.json")
         self.appData[0] = Serializer.deserialize(filename)
         self.appDataChanged()
 

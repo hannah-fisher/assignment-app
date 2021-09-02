@@ -3,6 +3,7 @@ from PySide6.QtCore import Qt
 
 from Style import Style
 
+
 class UpcomingWidget(QtWidgets.QWidget):
     def __init__(self, appData):
         super().__init__()

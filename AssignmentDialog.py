@@ -2,8 +2,10 @@ from PySide6 import QtWidgets
 
 from AssignmentAppData import Priority
 
+
 class AssignmentDialog(QtWidgets.QDialog):
-    def __init__(self, assignment, complete_assignment_func, reload_display_func):
+    def __init__(self, assignment, complete_assignment_func,
+                 reload_display_func):
         super().__init__()
         self.assignment = assignment
         self.complete_assignment_func = complete_assignment_func
@@ -15,7 +17,8 @@ class AssignmentDialog(QtWidgets.QDialog):
         titleLabel = QtWidgets.QLabel(self)
         titleLabel.setText(assignment.title)
         priorityLabel = QtWidgets.QLabel(self)
-        priorityLabel.setText("Priority: " + Priority(assignment.priority).name)
+        priorityLabel.setText("Priority: " +
+                              Priority(assignment.priority).name)
         dueLabel = QtWidgets.QLabel(self)
         dueLabel.setText("Due: " + str(assignment.due_date))
         notesLabel = QtWidgets.QLabel(self)

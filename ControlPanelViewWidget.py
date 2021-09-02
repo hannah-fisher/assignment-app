@@ -2,6 +2,7 @@ from PySide6 import QtWidgets
 
 from Style import Style
 
+
 class ControlPanelViewWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()

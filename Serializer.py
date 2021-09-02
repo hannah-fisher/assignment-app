@@ -3,6 +3,7 @@ import datetime
 
 from AssignmentAppData import AssignmentAppData
 
+
 class Serializer():
     def __init__(self):
         pass
@@ -42,7 +43,7 @@ class Serializer():
         try:
             json_file = open(filename, "w")
             json.dump(appDataDict, json_file, indent=1)
-            json_file.close()            
+            json_file.close()
         except FileNotFoundError:
             # TODO something more here
             print("file not found: " + filename)
@@ -67,8 +68,14 @@ class Serializer():
                 assignments_json = category_json["Assignments"]
                 for assignment in assignments_json:
                     d = assignment["due_date"]
-                    due_date = datetime.datetime(d["year"], d["month"], d["day"], hour=d["hour"])
-                    appData.add_assignment(category_name, assignment["id"], assignment["title"], due_date, assignment["notes"], int(assignment["priority"]))
+                    due_date = datetime.datetime(d["year"],
+                                                 d["month"],
+                                                 d["day"],
+                                                 hour=d["hour"])
+                    appData.add_assignment(category_name, assignment["id"],
+                                           assignment["title"], due_date,
+                                           assignment["notes"],
+                                           int(assignment["priority"]))
             # TODO load finished assignments
             json_file.close()
             return appData

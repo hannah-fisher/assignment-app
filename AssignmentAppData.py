@@ -1,6 +1,7 @@
 import datetime
 import enum
 
+
 class AssignmentAppData:
     def __init__(self):
         self.categories = []
@@ -10,7 +11,8 @@ class AssignmentAppData:
         category = Category(name, color)
         self.categories.append(category)
 
-    def add_assignment(self, category_name, id, title, due_date, notes, priority):
+    def add_assignment(self, category_name, id, title, due_date, notes,
+                       priority):
         assignment = Assignment(id, title, due_date, notes, priority)
         for category in self.categories:
             if category.name == category_name:
@@ -24,7 +26,8 @@ class AssignmentAppData:
         for c in self.categories:
             for a in c.assignments:
                 if a.id == assignment.id:
-                    finished_assignment = FinishedAssignment(assignment, datetime.datetime.now(), c.name)
+                    finished_assignment = FinishedAssignment(
+                        assignment, datetime.datetime.now(), c.name)
                     self.finished.append(finished_assignment)
                     c.assignments.remove(assignment)
                     break
@@ -36,8 +39,10 @@ class AssignmentAppData:
         all_assignments_with_categories = []
         for category in self.categories:
             for assignment in category.assignments:
-                all_assignments_with_categories.append((assignment, category.color))
-        all_assignments_with_categories = sorted(all_assignments_with_categories, key=lambda x: x[0].due_date)
+                all_assignments_with_categories.append(
+                    (assignment, category.color))
+        all_assignments_with_categories = sorted(
+            all_assignments_with_categories, key=lambda x: x[0].due_date)
         return all_assignments_with_categories[:n]
 
     def __str__(self):
@@ -55,7 +60,7 @@ class Category:
     def __init__(self, name, color):
         self.name = name
         self.color = color
-        self.assignments = [] # should be sorted newest to oldest date
+        self.assignments = []  # should be sorted newest to oldest date
 
     def add_assignment(self, assignment):
         self.assignments.append(assignment)
@@ -64,11 +69,12 @@ class Category:
 
 class Assignment:
     def __init__(self, id, title, due_date, notes, priority):
-        self.id = id # unique
+        self.id = id  # unique
         self.title = title
         self.due_date = due_date
         self.notes = notes
         self.priority = priority
+
 
 class FinishedAssignment:
     def __init__(self, assignment, finished_date, category):

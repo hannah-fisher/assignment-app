@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 
+
 class AddCategoryDialog(QtWidgets.QDialog):
     def __init__(self, appData, appDataChanged):
         super().__init__()
@@ -33,7 +34,10 @@ class AddCategoryDialog(QtWidgets.QDialog):
             print("error when making category color")
             return
         for c in color[1:]:
-            if c not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]:
+            if c not in [
+                    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
+                    "C", "D", "E", "F"
+            ]:
                 # TODO show an error
                 print("error when making category color")
                 return

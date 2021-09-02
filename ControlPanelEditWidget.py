@@ -6,6 +6,7 @@ from Style import Style
 from AddAssignmentDialog import AddAssignmentDialog
 from AddCategoryDialog import AddCategoryDialog
 
+
 class ControlPanelEditWidget(QtWidgets.QWidget):
     def __init__(self, appData, appDataChanged):
         super().__init__()
@@ -31,12 +32,14 @@ class ControlPanelEditWidget(QtWidgets.QWidget):
         Style.backgroundColorWidget(self, Style.ControlPanelEditWidgetColor)
 
     def load_from_file_button_clicked(self):
-        filename, other = QtWidgets.QFileDialog.getOpenFileName(self, "Load App Data", "/home/", "*.json")
+        filename, other = QtWidgets.QFileDialog.getOpenFileName(
+            self, "Load App Data", "/home/", "*.json")
         self.appData[0] = Serializer.deserialize(filename)
         self.appDataChanged()
 
     def save_to_file_button_clicked(self):
-        filename, other = QtWidgets.QFileDialog.getSaveFileName(self, "Save App Data", "/home/", "*.json")
+        filename, other = QtWidgets.QFileDialog.getSaveFileName(
+            self, "Save App Data", "/home/", "*.json")
         Serializer.serialize(filename, self.appData[0])
 
     def add_assignment_button_clicked(self):

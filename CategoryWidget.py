@@ -5,6 +5,7 @@ from Style import Style
 
 from AssignmentWidget import AssignmentWidget
 
+
 class CategoryWidget(QtWidgets.QWidget):
     def __init__(self, name, color):
         super().__init__()
@@ -28,6 +29,9 @@ class CategoryWidget(QtWidgets.QWidget):
 
         Style.backgroundColorWidget(self, color)
 
-    def add_assignment(self, assignment, complete_assignment_func, reload_display_func):
-        assignmentWidget = AssignmentWidget(assignment, complete_assignment_func, reload_display_func)
+    def add_assignment(self, assignment, complete_assignment_func,
+                       reload_display_func):
+        assignmentWidget = AssignmentWidget(assignment,
+                                            complete_assignment_func,
+                                            reload_display_func)
         self.vbox.addWidget(assignmentWidget)
