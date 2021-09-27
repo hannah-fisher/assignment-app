@@ -36,8 +36,28 @@ class Serializer():
             categoryData["Assignments"] = assignmentsData
             categoriesData[category.name] = categoryData
         for finishedAssignment in appData.finished:
-            # TODO
-            pass
+            finishedAssignmentData = {}
+            finishedAssignmentData["category"] = finishedAssignment.category
+            dateData = {}
+            dateData["year"] = finishedAssignment.finished_date.year
+            dateData["month"] = finishedAssignment.finished_date.month
+            dateData["day"] = finishedAssignment.finished_date.day
+            dateData["hour"] = finishedAssignment.finished_date.hour
+            finishedAssignmentData["finished_date"] = dateData
+            assignmentData = {}
+            assignmentData["id"] = f"{finishedAssignment.assignment.id}"
+            assignmentData["title"] = finishedAssignment.assignment.title
+            dueDateData = {}
+            dueDateData["year"] = finishedAssignment.assignment.due_date.year
+            dueDateData["month"] = finishedAssignment.assignment.due_date.month
+            dueDateData["day"] = finishedAssignment.assignment.due_date.day
+            dueDateData["hour"] = finishedAssignment.assignment.due_date.hour
+            assignmentData["due_date"] = dueDateData
+            assignmentData["notes"] = finishedAssignment.assignment.notes
+            assignmentData[
+                "priority"] = f"{finishedAssignment.assignment.priority:01}"
+            finishedAssignmentData["assignment"] = assignmentData
+            finishedData.append(finishedAssignmentData)
         appDataDict = {"Categories": categoriesData, "Finished": finishedData}
         # write to file
         try:
