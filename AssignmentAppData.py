@@ -32,6 +32,13 @@ class AssignmentAppData:
                     c.assignments.remove(assignment)
                     break
 
+    def delete_assignment(self, assignment):
+        for c in self.categories:
+            for a in c.assignments:
+                if a.id == assignment.id:
+                    c.assignments.remove(assignment)
+                    break
+
     def get_category_names(self):
         return [category.name for category in self.categories]
 

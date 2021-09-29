@@ -6,11 +6,12 @@ from AssignmentDialog import AssignmentDialog
 
 
 class AssignmentWidget(QtWidgets.QListWidget):
-    def __init__(self, assignment, complete_assignment_func,
+    def __init__(self, assignment, complete_assignment_func, delete_assignment_func,
                  reload_display_func):
         super().__init__()
         self.assignment = assignment
         self.complete_assignment_func = complete_assignment_func
+        self.delete_assignment_func = delete_assignment_func
         self.reload_display_func = reload_display_func
         self.label = QtWidgets.QListWidgetItem(self)
         self.set_label_text()
@@ -40,5 +41,6 @@ class AssignmentWidget(QtWidgets.QListWidget):
     def mousePressEvent(self, event):
         dialog = AssignmentDialog(self.assignment,
                                   self.complete_assignment_func,
+                                  self.delete_assignment_func,
                                   self.reload_display_func)
         dialog.exec()

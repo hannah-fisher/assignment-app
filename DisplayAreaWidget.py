@@ -35,6 +35,7 @@ class DisplayAreaWidget(QtWidgets.QWidget):
             for assignment in category.assignments:
                 categoryWidget.add_assignment(assignment,
                                               appData.complete_assignment,
+                                              appData.delete_assignment,
                                               self.appDataChanged)
             self.layout.addWidget(categoryWidget, row, column)
             added_category_count += 1
