@@ -36,7 +36,10 @@ class UpcomingWidget(QtWidgets.QWidget):
             child = self.vbox.takeAt(0)
             child.widget().deleteLater()
         # re-add new assignments
-        for (a, c) in self.appData[0].get_soonest_n_assignments(5):
+        count = self.appData[0].preferences["upcoming_count"]
+        if count == None:
+            count = 5
+        for (a, c) in self.appData[0].get_soonest_n_assignments(count):
             assignment_label = QtWidgets.QLabel(self)
             label_string = ""
             label_string += calendar.day_name[a.due_date.weekday()] + " "

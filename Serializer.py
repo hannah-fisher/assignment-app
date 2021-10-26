@@ -58,7 +58,8 @@ class Serializer():
                 "priority"] = f"{finishedAssignment.assignment.priority:01}"
             finishedAssignmentData["assignment"] = assignmentData
             finishedData.append(finishedAssignmentData)
-        appDataDict = {"Categories": categoriesData, "Finished": finishedData}
+        preferencesData = appData.preferences
+        appDataDict = {"Categories": categoriesData, "Finished": finishedData, "Preferences": preferencesData}
         # write to file
         try:
             json_file = open(filename, "w")
@@ -97,6 +98,9 @@ class Serializer():
                                            assignment["notes"],
                                            int(assignment["priority"]))
             # TODO load finished assignments
+            # load preferences
+            for preference in json_data["Preferences"]:
+                appData.add_preference(preference, json_data["Preferences"][preference])
             json_file.close()
             return appData
         except FileNotFoundError:

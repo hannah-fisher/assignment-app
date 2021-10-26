@@ -6,6 +6,7 @@ class AssignmentAppData:
     def __init__(self):
         self.categories = []
         self.finished = []
+        self.preferences = {}
 
     def add_category(self, name, color="#FFFFFF"):
         category = Category(name, color)
@@ -17,6 +18,9 @@ class AssignmentAppData:
         for category in self.categories:
             if category.name == category_name:
                 category.add_assignment(assignment)
+
+    def add_preference(self, name, value):
+        self.preferences[name] = value
 
     def clear_all_data(self):
         self.categories = []
